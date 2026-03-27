@@ -1,0 +1,24 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/opt/ros/noetic/include/**",
+        "/home/liar2281/Integration_demo/A26.0/src/drivers/chcnav_ros/include/**",
+        "/home/liar2281/Integration_demo/A26.0/src/drivers/hik_camera_plus/include/**",
+        "/home/liar2281/Integration_demo/A26.0/src/detection/patchwork/include/**",
+        "/home/liar2281/Integration_demo/A26.0/src/tools_msgs/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}

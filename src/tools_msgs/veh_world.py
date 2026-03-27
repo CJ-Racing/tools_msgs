@@ -1,14 +1,10 @@
-"""
-    车体坐标系 -> 世界坐标系(ENU)
-"""
-
+"""车体坐标系 -> 世界坐标系(ENU)"""
 import math
 
 
 def yaw_deg_to_rad(yaw_deg):
     """航向角转换:正北顺时针(A23 chcnav 格式)-> 数学弧度
 
-    参考 A23 world_cone.py vehicle_pose_callback():
         math_angle_deg = 90.0 - raw_yaw_deg
 
     Args:

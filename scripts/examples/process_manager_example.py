@@ -1,39 +1,17 @@
 #!/usr/bin/env python3
-"""
-进程管理工具示例
-
-基于 A23 的 ami.py bash_start() 提炼的进程管理工具
-
-A23 原始做法（ami.py bash_start()）：
-- os.system("bash " + path) 阻塞执行
-- 通过 yes_or_no() 根据 CAN 信号选择脚本
-
-A23 shell 目录：
-- AMI.sh, bazi.sh, chejian.sh, jiasu.sh, xunji.sh, zhidong.sh, zhixian.sh
-
-A26 改进：
-- subprocess.Popen 非阻塞，不阻塞状态机主线程
-- 支持停止/重启模块
-- 记录已启动的进程
-"""
-
 import subprocess
 import rospy
 import os
 
 
 class ProcessManager:
-    """进程管理器
-    
-    A26 使用方式：AMI 状态机在 RUNNING 状态调用 start()，
-    COMPLETE/EMERGENCY 状态调用 stop_all()
-    """
+    """进程管理器"""
 
     def __init__(self):
         self._processes = {}  # {name: Popen}
 
     def start(self, name, script_path):
-        """启动 bash 脚本（非阻塞，A26 改进自 A23 os.system()）
+        """启动 bash 脚本（非阻塞）
         
         Args:
             name: 模块名，如 "jiasu"、"bazi"
@@ -104,7 +82,6 @@ class ProcessManager:
 if __name__ == '__main__':
     rospy.init_node('process_manager_test')
 
-    # 映射关系（参考 A23 ami.py 的 yes_or_no() + A26 的 rosparam 方式）
     TASK_SCRIPTS = {
         "INSPECTION":       rospy.get_param("~INSPECTION", ""),
         "MANUAL_DRIVERING": rospy.get_param("~MANUAL_DRIVERING", ""),

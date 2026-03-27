@@ -1,29 +1,9 @@
 #!/usr/bin/env python3
-"""
-坐标转换工具示例
-
-基于 A23 的 world_cone.py 提炼的核心变换逻辑
-
-A23 原始做法（world_cone.py transform_to_world()）：
-- 车辆位姿来自 /local_zc (zuobiaopy)：x, y, yaw（正北顺时针 0-360°）
-- 锥桶局部坐标来自 /yolov7/all_cones
-- 旋转矩阵 + 平移，转换到世界系（ENU：x=东，y=北）
-
-A26 改进：
-- 提取核心变换为纯函数，无 ROS 依赖
-- 支持批量转换
-- 保留 A23 的航向角转换规则
-"""
-
 import math
 
 
 def yaw_deg_to_rad(yaw_deg):
     """航向角转换：正北顺时针（A23 chcnav 格式）→ 数学弧度
-    
-    参考 A23 world_cone.py vehicle_pose_callback()：
-        math_angle_deg = 90.0 - raw_yaw_deg
-    
     Args:
         yaw_deg: 正北顺时针 0-360°
         
@@ -40,8 +20,6 @@ def yaw_deg_to_rad(yaw_deg):
 
 def vehicle_to_world(cone_veh_x, cone_veh_y, veh_world_x, veh_world_y, veh_yaw_rad):
     """车辆坐标系 → 世界坐标系（ENU）
-    
-    直接移植自 A23 world_cone.py transform_to_world()
     
     Args:
         cone_veh_x, cone_veh_y: 锥桶在车辆坐标系中的位置（米）
@@ -84,7 +62,7 @@ def world_to_vehicle(cone_world_x, cone_world_y, veh_world_x, veh_world_y, veh_y
 
 
 def batch_vehicle_to_world(cones_veh, veh_world_x, veh_world_y, veh_yaw_rad):
-    """批量转换（A26 新增，处理一帧中所有锥桶）
+    """批量转换
     
     Args:
         cones_veh: [(x, y, color), ...] 车辆坐标系锥桶列表

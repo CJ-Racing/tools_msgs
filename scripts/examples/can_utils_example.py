@@ -1,20 +1,4 @@
 #!/usr/bin/env python3
-"""
-CAN 工具示例
-
-基于 A23 的 ami.py / EBS.py / error.py 提炼的通用 CAN 工具
-
-A23 原始做法：
-- ami.py: bus = can.interface.Bus(...) 直接在全局初始化，阻塞 recv 轮询 ID 0x7B
-- EBS.py: send_speed_to_vcu() 发送 ID 0x01 的速度/加速度帧
-- error.py: send_can_message() 发送 ID 0x02 的传感器状态帧
-
-A26 改进：
-- 封装成类，支持复用
-- 支持非阻塞接收
-- 统一异常处理
-"""
-
 import can
 import rospy
 
@@ -45,9 +29,6 @@ class CANUtils:
 
     def send(self, arbitration_id, data, extended_id=False):
         """发送 CAN 帧
-        
-        参考 A23 error.py send_can_message()
-        
         Args:
             arbitration_id: CAN ID，如 0x02（传感器状态）、0x141（EBS）
             data: 8 字节列表
@@ -93,14 +74,7 @@ class CANUtils:
         return task_signal, confirm_signal
 
     def send_sensor_status(self, nav_err, camera_err, lidar_err):
-        """发送传感器状态到 ECU（参考 A23 error.py，ID 0x02）
-        
-        A23 定义：
-            data[0] = 导航状态
-            data[1] = 相机状态
-            data[2] = 雷达状态
-            0x00=正常，0x01=异常
-        """
+        """发送传感器状态到 ECU（参考 A23 error.py，ID 0x02）"""
         data = [
             0x01 if nav_err else 0x00,
             0x01 if camera_err else 0x00,
@@ -110,7 +84,7 @@ class CANUtils:
         return self.send(0x02, data)
 
     def send_speed_cmd(self, target_speed, acceleration, current_speed):
-        """发送速度指令到 VCU（参考 A23 EBS.py send_speed_to_vcu()，ID 0x01）
+        """发送速度指令到 VCU
         
         Args:
             target_speed: 目标速度 (m/s)

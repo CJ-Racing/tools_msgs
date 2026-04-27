@@ -1,3 +1,4 @@
+Header header
 geometry_msgs/Point position
 string color
-float confidence
+float32 confidence

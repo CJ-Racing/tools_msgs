@@ -55,6 +55,8 @@ add_message_files(
   ConeInfo.msg
   ConeDetection2D.msg
   ConeDetection2DArray.msg
+  IpcState.msg
+  EcuStatus.msg
   )
 
 ## Generate services in the 'srv' folder

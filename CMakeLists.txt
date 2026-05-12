@@ -58,6 +58,7 @@ add_message_files(
   IpcState.msg
   EcuStatus.msg
   zuobiao.msg
+  local_zc.msg
   )
 
 ## Generate services in the 'srv' folder

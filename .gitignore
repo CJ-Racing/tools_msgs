@@ -1,0 +1,52 @@
+# ===========================
+# Python
+# ===========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+*.egg
+dist/
+*.whl
+
+# ===========================
+# C++ / Catkin build artifacts
+# ===========================
+*.o
+*.so
+*.a
+*.d
+*.out
+build/
+devel/
+install/
+logs/
+.catkin_workspace
+
+# ===========================
+# IDE / Editor
+# ===========================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.qoder/
+
+# ===========================
+# ROS bags & logs
+# ===========================
+*.bag
+*.bag.active
+*.log
+
+# ===========================
+# Calibration capture images (large, not for VCS)
+# ===========================
+biaoding/src/stereo_calib/scripts/images/
+
+# ===========================
+# OS generated
+# ===========================
+.DS_Store
+Thumbs.db

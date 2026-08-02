@@ -59,6 +59,7 @@ add_message_files(
   EcuStatus.msg
   zuobiao.msg
   local_zc.msg
+  PlannedPath.msg
   )
 
 ## Generate services in the 'srv' folder

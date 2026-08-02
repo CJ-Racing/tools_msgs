@@ -46,6 +46,16 @@ logs/
 biaoding/src/stereo_calib/scripts/images/
 
 # ===========================
+# Archives
+# ===========================
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.7z
+*.rar
+
+# ===========================
 # OS generated
 # ===========================
 .DS_Store
